@@ -21,11 +21,21 @@ public class BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
     
+    protected WebElement waitForElementToBeClickable(By locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+    
     protected void click(By locator) {
-        waitForElement(locator).click();
+        waitForElementToBeClickable(locator).click();
     }
     
     protected void type(By locator, String text) {
-        waitForElement(locator).sendKeys(text);
+        WebElement element = waitForElement(locator);
+        element.clear();
+        element.sendKeys(text);
     }
-} 
+    
+    protected String getText(By locator) {
+        return waitForElement(locator).getText();
+    }
+}
