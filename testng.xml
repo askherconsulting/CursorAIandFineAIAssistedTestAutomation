@@ -4,6 +4,7 @@
     <test name="Login Tests">
         <classes>
             <class name="com.test.automation.tests.LoginTest"/>
+            <class name="com.test.automation.tests.PasswordRecoveryTest"/>
         </classes>
     </test>
-</suite> 
+</suite>
