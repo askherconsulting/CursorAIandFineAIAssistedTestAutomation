@@ -6,9 +6,10 @@ public class LoginPage extends BasePage {
     private By usernameField = By.name("username");
     private By passwordField = By.name("password");
     private By loginButton = By.cssSelector("button[type='submit']");
-    private By dashboardHeader = By.className("oxd-text--h6");  // OrangeHRM dashboard header
-    private By errorMessage = By.cssSelector(".error-message"); // Error message element
-    private By passwordRecoveryLink = By.linkText("Forgot your password?"); // Password recovery link
+    private By dashboardHeader = By.xpath("//h6[contains(@class, 'oxd-text') and text()='Dashboard']");
+    private By forgotPasswordLink = By.cssSelector(".orangehrm-login-forgot");
+    private By resetPasswordHeader = By.cssSelector(".orangehrm-forgot-password-title");
+    private By errorMessage = By.cssSelector(".oxd-alert-content-text"); // Yes, this selector appears correct for capturing error messages in OrangeHRM's login page. It targets the error text container with class 'oxd-alert-content-text'
     
     public void login(String username, String password) {
         type(usernameField, username);
@@ -16,15 +17,23 @@ public class LoginPage extends BasePage {
         click(loginButton);
     }
     
+    public boolean isDashboardDisplayed() {
+        return waitForElement(dashboardHeader).isDisplayed();
+    }
+    
+    public boolean isErrorMessageDisplayed() {
+        return waitForElement(errorMessage).isDisplayed();
+    }
+    
     public String getErrorMessage() {
         return waitForElement(errorMessage).getText();
     }
     
     public void navigateToPasswordRecovery() {
-        click(passwordRecoveryLink);
+        click(forgotPasswordLink);
     }
     
-    public boolean isDashboardDisplayed() {
-        return waitForElement(dashboardHeader).isDisplayed();
+    public boolean isPasswordRecoveryPageDisplayed() {
+        return waitForElement(resetPasswordHeader).isDisplayed();
     }
 }

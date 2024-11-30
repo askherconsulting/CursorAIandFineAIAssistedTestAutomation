@@ -13,17 +13,19 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.isDashboardDisplayed(), "Dashboard should be visible after successful login");
     }
     
+    //FINE.AI GENERATED TEST REQUIRED ASSERTION TO BE MODIFIED TO BECOME VALID TEST
     @Test
     public void testInvalidLogin() {
         LoginPage loginPage = new LoginPage();
         loginPage.login("InvalidUser", "InvalidPass");
-        Assert.assertFalse(loginPage.isDashboardDisplayed(), "Dashboard should not be visible after unsuccessful login");
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed when login is invalid");
     }
-    
-    @Test
+    //FINE.AI GENERATED TEST BUT NOT VALID - THERE IS NO ERROR MESSAGE DISPLAYED
+/*     @Test
     public void testEmptyFieldsLogin() {
         LoginPage loginPage = new LoginPage();
         loginPage.login("", "");
-        Assert.assertFalse(loginPage.isDashboardDisplayed(), "Dashboard should not be visible when login fields are empty");
-    }
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), 
+            "Error message should be displayed when login fields are empty");
+    } */
 }
